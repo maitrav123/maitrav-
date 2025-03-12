@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Box Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Fill the Text Boxes</h1>
+<form id="myForm" onsubmit="return verifyForm()">
+    <input type="text" id="textbox1" placeholder="Text Box 1" required>
+    <input type="text" id="textbox2" placeholder="Text Box 2" required>
+    <input type="text" id="textbox3" placeholder="Text Box 3" required>
+    <input type="text" id="textbox4" placeholder="Text Box 4" required>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    // Pre-fill the text boxes with data when the page loads
+    window.onload = function() {
+        document.getElementById('textbox1').value = 'Sample Text 1';
+        document.getElementById('textbox2').value = 'Sample Text 2';
+        document.getElementById('textbox3').value = 'Sample Text 3';
+        document.getElementById('textbox4').value = 'Sample Text 4';
+    };
+
+    function verifyForm() {
+        const textboxes = [
+            { id: 'textbox1', name: 'Text Box 1' },
+            { id: 'textbox2', name: 'Text Box 2' },
+            { id: 'textbox3', name: 'Text Box 3' },
+            { id: 'textbox4', name: 'Text Box 4' }
+        ];
+
+        for (let textbox of textboxes) {
+            const value = document.getElementById(textbox.id).value.trim();
+            if (value === '') {
+                alert(${textbox.name} has been left empty.);
+                return false; // Prevent form submission
+            }
+        }
+
+        alert('OK'); // All text boxes are filled
+        return true; // Allow form submission
+    }
+</script>
+
+</body>
+</html>
